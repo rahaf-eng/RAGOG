@@ -23,6 +23,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install langchain huggingface_hub faiss-cpu pypdf tqdm
 
+      - name: Check HF_TOKEN environment variable
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "Error: HF_TOKEN is not set."
+            exit 1
+          else
+            echo "HF_TOKEN is set."
+          fi
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+
       - name: Run RAG bot
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
