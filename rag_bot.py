@@ -7,10 +7,8 @@ from langchain.prompts.chat import ChatPromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_huggingface.llms.huggingface_endpoint import HuggingFaceEndpoint
 
-# Token من GitHub Secrets
 huggingface_token = os.getenv("HF_TOKEN")
 
-# إعداد الـ LLM
 llm = HuggingFaceEndpoint(
     repo_id="mistralai/Mistral-7B-Instruct-v0.3",
     task="text-generation",
@@ -18,12 +16,12 @@ llm = HuggingFaceEndpoint(
     huggingfacehub_api_token=huggingface_token
 )
 
-# الروابط والـ PDF
+
 urls = [
     'https://ar.wikipedia.org/wiki/%D8%B3%D9%83%D9%83_%D8%AD%D8%AF%D9%8A%D8%AF_%D9%85%D8%B5%D8%B1',
     'https://en.wikipedia.org/wiki/Egyptian_National_Railways'
 ]
-pdf = 'Document.pdf'  # خليه بنفس الاسم اللي هترفعيه مع الريبو
+pdf = 'Document.pdf'  
 
 def build_retriever(urls, pdf):
     all_docs = []
